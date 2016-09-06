@@ -23,6 +23,7 @@
 #include <znc/WebModules.h>
 #include <znc/znc.h>
 #include <dlfcn.h>
+#include <cstdlib>
 
 using std::map;
 using std::set;
@@ -1884,8 +1885,8 @@ CModules::ModDirList CModules::GetModDirs() {
     ret.push(std::make_pair(sDir, sDir));
 
     // <moduledir> and <datadir> (<prefix>/lib/znc)
-    ret.push(std::make_pair(_MODDIR_ + CString("/"),
-                            _DATADIR_ + CString("/modules/")));
+    ret.push(std::make_pair(CString(getenv("SNAP")) + _MODDIR_ + CString("/"),
+                            CString(getenv("SNAP")) + _DATADIR_ + CString("/modules/")));
 
     return ret;
 }

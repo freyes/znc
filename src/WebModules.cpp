@@ -22,6 +22,7 @@
 #include <time.h>
 #include <algorithm>
 #include <sstream>
+#include <cstdlib>
 
 using std::pair;
 using std::vector;
@@ -563,7 +564,7 @@ CString CWebSock::GetSkinPath(const CString& sSkinName) {
         sRet = CZNC::Get().GetCurPath() + "/webskins/" + sSkinName;
 
         if (!CFile::IsDir(sRet)) {
-            sRet = CString(_SKINDIR_) + "/" + sSkinName;
+            sRet = CString(getenv("SNAP")) + CString(_SKINDIR_) + "/" + sSkinName;
         }
     }
 
